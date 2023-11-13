@@ -10,30 +10,21 @@
 void print_integer(va_list arg, int *count)
 {
 	int n = va_arg(arg, int);
-	int m, j = 0, ar[7];
+	int div = 1, i, resp;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		(*count)++;
-		n = -n;
+		*count += 1;
 	}
-
-	while (n / 10 > 1)
+	for (i = 0; n / div > 9 || n / div < -9; i++)
+		div *= 10;
+	for (; div != 0; div /= 10)
 	{
-		m = n % 10;
-		ar[j] = m;
-		j++;
-		n = n / 10;
-		(*count)++;
-	}
-
-	ar[j] = n;
-	(*count)++;
-
-	for (; j >= 0; j--)
-	{
-		_putchar(ar[j] + '0');
-		(*count)++;
+		resp = (n / div) % 10;
+		if (resp < 0)
+			resp *= -1;
+		_putchar(resp + '0');
+		*count += 1;
 	}
 }
