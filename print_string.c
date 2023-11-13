@@ -7,14 +7,14 @@
  */
 void print_string(va_list arg, int *count)
 {
-	int j;
 	char *str = va_arg(arg, char *);
 
 	if (str == NULL)
 		str = "(null)";
-	for (j = 0; str[j] != '\0'; j++)
+	while (*str != '\0')
 	{
-		_putchar(str[j]);
+		_putchar(*str);
 		(*count)++;
+		str++;
 	}
 }
